@@ -1,4 +1,4 @@
-# CryoSkywater130nm_Ngspice
+# CryoPDK_Skywater130nm_ML
 NGSpice simulation using translated cryogenic PDk models based on https://github.com/UTA-Advanced-Detector-Technologies/Skywater-130nm-77K-Cryogenic-Models/tree/main 
 
 ***download this repo to ngspice-skywater-sims directory in your home directory***
