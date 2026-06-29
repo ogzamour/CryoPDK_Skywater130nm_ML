@@ -86,7 +86,7 @@ Then, run ```python runAll.py``` in both the nfet_mod and pfet_mod directories *
 After both are run, ensure the paths in getRMS.py match your directory (for both the cryo data and modeled pfet/nfet data). Then, run ```python rrmsCalc.py``` in the ngspice-skywater-sims directory and the RRMS should print in terminal.
 
 ***could also choose to not rerun pfet/nfet models since the output files are included already in repo***
-<img width="474" height="441" alt="Screenshot 2026-06-11 at 4 57 22 PM" src="https://github.com/user-attachments/assets/e7164b46-d4d7-4c3c-94d6-4ae85183d32b" />
+
 
 ## Montecarlo
 To run a montecarlo simulation for all parameters on all device, run ```python latinHypercube.py``` in the montecarlo directory. The output will be in ```mc_output_lhc``` and all sweep data will be in 3 CSV files.
