@@ -1,0 +1,151 @@
+* NMOS sweep (Sky130) 
+
+
+XM1 DRAIN GATE 0 0 sky130_fd_pr__pfet_01v8_lvt l=8 w=5 mult=3 m=3 nf=1 ad='floor((nf+1)/2) * w/nf * 0.29' as='floor((nf+2)/2) * w/nf * 0.29' pd='2 * floor((nf+1)/2) * (w/nf + 0.29)' ps='2 * floor((nf+2)/2) * (w/nf + 0.29)' nrd='0.29 / w' nrs='0.29 / w' sa=0 sb=0 sd=0 
+.lib "/home/oliviag/skywater130nm/volare/sky130/versions/a918dc7c8e474a99b68c85eb3546b4ed91fe9e7b/sky130A/libs.tech/ngspice/sky130.lib.spice" tt_77k
+
+Vgs gate GND 0
+Vds VDD GND 1.48
+.temp -196.15
+
+
+
+.control
+set noaskquit
+set filetype=csv
+run
+echo " MONTE CARLO RUN: 0"
+altermod @m.xm1.msky130_fd_pr__pfet_01v8_lvt[vth0]    = -1.0741318109425222
+altermod @m.xm1.msky130_fd_pr__pfet_01v8_lvt[u0]      = 0.02823334831105213
+altermod @m.xm1.msky130_fd_pr__pfet_01v8_lvt[rdsw]    = 17164.321787877056
+altermod @m.xm1.msky130_fd_pr__pfet_01v8_lvt[nfactor] = 25.691484633838286
+altermod @m.xm1.msky130_fd_pr__pfet_01v8_lvt[vsat]    = 724065960.2005522
+altermod @m.xm1.msky130_fd_pr__pfet_01v8_lvt[eta0]    = 0.19265391866366693
+altermod @m.xm1.msky130_fd_pr__pfet_01v8_lvt[delta]   = 0.012718659714020785
+dc Vds 0 -1.85 -0.01  Vgs 0 -1.85 -0.185
+let out_vth0    = -1.0741318109425222 * (v(gate)*0 + 1)
+let out_u0      = 0.02823334831105213 * (v(gate)*0 + 1)
+let out_rdsw    = 17164.321787877056 * (v(gate)*0 + 1)
+let out_nfactor = 25.691484633838286 * (v(gate)*0 + 1)
+let out_vsat    = 724065960.2005522 * (v(gate)*0 + 1)
+let out_eta0    = 0.19265391866366693 * (v(gate)*0 + 1)
+let out_delta   = 0.012718659714020785 * (v(gate)*0 + 1)
+let run_num     = 0 * (v(gate)*0 + 1)
+let ax_id0 = -vds#branch
+set wr_vecnames
+set wr_singlescale
+wrdata /home/oliviag/ngspice-skywater-sims/montecarlo/mc_output_lhc/pmos_FET_len_8_wid_5/data_2026-06-29_18-47-38/run_0/vds_sweep.csv vdd gate ax_id0 out_vth0 out_u0 out_rdsw out_nfactor out_vsat out_eta0
+dc Vgs 0 -1.85 -0.01  Vds -0.01 -0.011 -1
+let out_vth0    = -1.0741318109425222 * (v(gate)*0 + 1)
+let out_u0      = 0.02823334831105213 * (v(gate)*0 + 1)
+let out_rdsw    = 17164.321787877056 * (v(gate)*0 + 1)
+let out_nfactor = 25.691484633838286 * (v(gate)*0 + 1)
+let out_vsat    = 724065960.2005522 * (v(gate)*0 + 1)
+let out_eta0    = 0.19265391866366693 * (v(gate)*0 + 1)
+let out_delta   = 0.012718659714020785 * (v(gate)*0 + 1)
+let run_num     = 0 * (v(gate)*0 + 1)
+let ax_id1 = -vds#branch
+wrdata /home/oliviag/ngspice-skywater-sims/montecarlo/mc_output_lhc/pmos_FET_len_8_wid_5/data_2026-06-29_18-47-38/run_0/vgs_sweep_0p01_vd.csv vdd gate ax_id1 out_vth0 out_u0 out_rdsw out_nfactor out_vsat out_eta0
+dc Vgs 0 -1.85 -0.01  Vds 0 -1.85 -0.37
+let out_vth0    = -1.0741318109425222 * (v(gate)*0 + 1)
+let out_u0      = 0.02823334831105213 * (v(gate)*0 + 1)
+let out_rdsw    = 17164.321787877056 * (v(gate)*0 + 1)
+let out_nfactor = 25.691484633838286 * (v(gate)*0 + 1)
+let out_vsat    = 724065960.2005522 * (v(gate)*0 + 1)
+let out_eta0    = 0.19265391866366693 * (v(gate)*0 + 1)
+let out_delta   = 0.012718659714020785 * (v(gate)*0 + 1)
+let run_num     = 0 * (v(gate)*0 + 1)
+let ax_id2 = -vds#branch
+wrdata /home/oliviag/ngspice-skywater-sims/montecarlo/mc_output_lhc/pmos_FET_len_8_wid_5/data_2026-06-29_18-47-38/run_0/vgs_sweep.csv vdd gate ax_id2 out_vth0 out_u0 out_rdsw out_nfactor out_vsat out_eta0
+reset
+echo " MONTE CARLO RUN: 1"
+altermod @m.xm1.msky130_fd_pr__pfet_01v8_lvt[vth0]    = -1.266650023618788
+altermod @m.xm1.msky130_fd_pr__pfet_01v8_lvt[u0]      = 0.030341366139233963
+altermod @m.xm1.msky130_fd_pr__pfet_01v8_lvt[rdsw]    = 14127.209498812676
+altermod @m.xm1.msky130_fd_pr__pfet_01v8_lvt[nfactor] = 27.142822652138825
+altermod @m.xm1.msky130_fd_pr__pfet_01v8_lvt[vsat]    = 698728051.0713376
+altermod @m.xm1.msky130_fd_pr__pfet_01v8_lvt[eta0]    = 0.21175483274255277
+altermod @m.xm1.msky130_fd_pr__pfet_01v8_lvt[delta]   = 0.011541365714929103
+dc Vds 0 -1.85 -0.01  Vgs 0 -1.85 -0.185
+let out_vth0    = -1.266650023618788 * (v(gate)*0 + 1)
+let out_u0      = 0.030341366139233963 * (v(gate)*0 + 1)
+let out_rdsw    = 14127.209498812676 * (v(gate)*0 + 1)
+let out_nfactor = 27.142822652138825 * (v(gate)*0 + 1)
+let out_vsat    = 698728051.0713376 * (v(gate)*0 + 1)
+let out_eta0    = 0.21175483274255277 * (v(gate)*0 + 1)
+let out_delta   = 0.011541365714929103 * (v(gate)*0 + 1)
+let run_num     = 1 * (v(gate)*0 + 1)
+let ax_id0 = -vds#branch
+set wr_vecnames
+set wr_singlescale
+wrdata /home/oliviag/ngspice-skywater-sims/montecarlo/mc_output_lhc/pmos_FET_len_8_wid_5/data_2026-06-29_18-47-38/run_1/vds_sweep.csv vdd gate ax_id0 out_vth0 out_u0 out_rdsw out_nfactor out_vsat out_eta0
+dc Vgs 0 -1.85 -0.01  Vds -0.01 -0.011 -1
+let out_vth0    = -1.266650023618788 * (v(gate)*0 + 1)
+let out_u0      = 0.030341366139233963 * (v(gate)*0 + 1)
+let out_rdsw    = 14127.209498812676 * (v(gate)*0 + 1)
+let out_nfactor = 27.142822652138825 * (v(gate)*0 + 1)
+let out_vsat    = 698728051.0713376 * (v(gate)*0 + 1)
+let out_eta0    = 0.21175483274255277 * (v(gate)*0 + 1)
+let out_delta   = 0.011541365714929103 * (v(gate)*0 + 1)
+let run_num     = 1 * (v(gate)*0 + 1)
+let ax_id1 = -vds#branch
+wrdata /home/oliviag/ngspice-skywater-sims/montecarlo/mc_output_lhc/pmos_FET_len_8_wid_5/data_2026-06-29_18-47-38/run_1/vgs_sweep_0p01_vd.csv vdd gate ax_id1 out_vth0 out_u0 out_rdsw out_nfactor out_vsat out_eta0
+dc Vgs 0 -1.85 -0.01  Vds 0 -1.85 -0.37
+let out_vth0    = -1.266650023618788 * (v(gate)*0 + 1)
+let out_u0      = 0.030341366139233963 * (v(gate)*0 + 1)
+let out_rdsw    = 14127.209498812676 * (v(gate)*0 + 1)
+let out_nfactor = 27.142822652138825 * (v(gate)*0 + 1)
+let out_vsat    = 698728051.0713376 * (v(gate)*0 + 1)
+let out_eta0    = 0.21175483274255277 * (v(gate)*0 + 1)
+let out_delta   = 0.011541365714929103 * (v(gate)*0 + 1)
+let run_num     = 1 * (v(gate)*0 + 1)
+let ax_id2 = -vds#branch
+wrdata /home/oliviag/ngspice-skywater-sims/montecarlo/mc_output_lhc/pmos_FET_len_8_wid_5/data_2026-06-29_18-47-38/run_1/vgs_sweep.csv vdd gate ax_id2 out_vth0 out_u0 out_rdsw out_nfactor out_vsat out_eta0
+reset
+echo " MONTE CARLO RUN: 2"
+altermod @m.xm1.msky130_fd_pr__pfet_01v8_lvt[vth0]    = -1.1499432277848032
+altermod @m.xm1.msky130_fd_pr__pfet_01v8_lvt[u0]      = 0.032251445376207076
+altermod @m.xm1.msky130_fd_pr__pfet_01v8_lvt[rdsw]    = 15886.315092015058
+altermod @m.xm1.msky130_fd_pr__pfet_01v8_lvt[nfactor] = 29.403450397128196
+altermod @m.xm1.msky130_fd_pr__pfet_01v8_lvt[vsat]    = 806692946.3860184
+altermod @m.xm1.msky130_fd_pr__pfet_01v8_lvt[eta0]    = 0.19609758016872872
+altermod @m.xm1.msky130_fd_pr__pfet_01v8_lvt[delta]   = 0.011247622833019215
+dc Vds 0 -1.85 -0.01  Vgs 0 -1.85 -0.185
+let out_vth0    = -1.1499432277848032 * (v(gate)*0 + 1)
+let out_u0      = 0.032251445376207076 * (v(gate)*0 + 1)
+let out_rdsw    = 15886.315092015058 * (v(gate)*0 + 1)
+let out_nfactor = 29.403450397128196 * (v(gate)*0 + 1)
+let out_vsat    = 806692946.3860184 * (v(gate)*0 + 1)
+let out_eta0    = 0.19609758016872872 * (v(gate)*0 + 1)
+let out_delta   = 0.011247622833019215 * (v(gate)*0 + 1)
+let run_num     = 2 * (v(gate)*0 + 1)
+let ax_id0 = -vds#branch
+set wr_vecnames
+set wr_singlescale
+wrdata /home/oliviag/ngspice-skywater-sims/montecarlo/mc_output_lhc/pmos_FET_len_8_wid_5/data_2026-06-29_18-47-38/run_2/vds_sweep.csv vdd gate ax_id0 out_vth0 out_u0 out_rdsw out_nfactor out_vsat out_eta0
+dc Vgs 0 -1.85 -0.01  Vds -0.01 -0.011 -1
+let out_vth0    = -1.1499432277848032 * (v(gate)*0 + 1)
+let out_u0      = 0.032251445376207076 * (v(gate)*0 + 1)
+let out_rdsw    = 15886.315092015058 * (v(gate)*0 + 1)
+let out_nfactor = 29.403450397128196 * (v(gate)*0 + 1)
+let out_vsat    = 806692946.3860184 * (v(gate)*0 + 1)
+let out_eta0    = 0.19609758016872872 * (v(gate)*0 + 1)
+let out_delta   = 0.011247622833019215 * (v(gate)*0 + 1)
+let run_num     = 2 * (v(gate)*0 + 1)
+let ax_id1 = -vds#branch
+wrdata /home/oliviag/ngspice-skywater-sims/montecarlo/mc_output_lhc/pmos_FET_len_8_wid_5/data_2026-06-29_18-47-38/run_2/vgs_sweep_0p01_vd.csv vdd gate ax_id1 out_vth0 out_u0 out_rdsw out_nfactor out_vsat out_eta0
+dc Vgs 0 -1.85 -0.01  Vds 0 -1.85 -0.37
+let out_vth0    = -1.1499432277848032 * (v(gate)*0 + 1)
+let out_u0      = 0.032251445376207076 * (v(gate)*0 + 1)
+let out_rdsw    = 15886.315092015058 * (v(gate)*0 + 1)
+let out_nfactor = 29.403450397128196 * (v(gate)*0 + 1)
+let out_vsat    = 806692946.3860184 * (v(gate)*0 + 1)
+let out_eta0    = 0.19609758016872872 * (v(gate)*0 + 1)
+let out_delta   = 0.011247622833019215 * (v(gate)*0 + 1)
+let run_num     = 2 * (v(gate)*0 + 1)
+let ax_id2 = -vds#branch
+wrdata /home/oliviag/ngspice-skywater-sims/montecarlo/mc_output_lhc/pmos_FET_len_8_wid_5/data_2026-06-29_18-47-38/run_2/vgs_sweep.csv vdd gate ax_id2 out_vth0 out_u0 out_rdsw out_nfactor out_vsat out_eta0
+reset
+quit
+.endc
+.end

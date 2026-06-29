@@ -1,0 +1,51 @@
+* NMOS Id–Vgs sweep (Sky130)
+.options scale=1.0
+.options temp=-196.15
+
+.lib "/home/oliviag/skywater130nm/volare/sky130/versions/a918dc7c8e474a99b68c85eb3546b4ed91fe9e7b/sky130A/libs.tech/ngspice/sky130.lib.spice" tt_77k
+
+* Gate bias (fixed)
+VGS GATE 0 1.11
+
+* drain sweep source
+VDS DRAIN 0 0
+
+
+
+
+* MOSFET
+
+XM1 DRAIN GATE 0 0 sky130_fd_pr__nfet_01v8_lvt w=1.6u l=0.15u nf=1 ad=0.384p as=0.384p pd=2.08u ps=2.08u
+
+
+
+* DC sweep
+.dc VDS 0 1.8 0.01
+
+.control
+run
+set filetype=ascii
+showmod m.xm1.msky130_fd_pr__nfet_01v8_lvt : vth0 u0 rdsw nfactor vsat eta0 delta
+
+*For if parameters need to be changed or modified at all
+
+set p_change = 0
+if ($p_change)
+    altermod m.xm1.msky130_fd_pr__nfet_01v8_lvt vth0 = 0.45
+    altermod m.xm1.msky130_fd_pr__nfet_01v8_lvt u0 = 0.09
+    altermod m.xm1.msky130_fd_pr__nfet_01v8_lvt rdsw = 101
+    altermod m.xm1.msky130_fd_pr__nfet_01v8_lvt nfactor = 12
+    altermod m.xm1.msky130_fd_pr__nfet_01v8_lvt vsat = 0.45
+    altermod m.xm1.msky130_fd_pr__nfet_01v8_lvt eta0 = -4.1
+    altermod m.xm1.msky130_fd_pr__nfet_01v8_lvt delta = 0.45
+    run
+else
+    echo ">>> Flag is FALSE: Keeping original Sky130 PDK parameters" 
+endif
+
+showmod m.xm1.msky130_fd_pr__nfet_01v8_lvt : vth0 u0 rdsw nfactor vsat eta0 delta
+wrdata singleSweepVDS.txt v(DRAIN) i(VDS)
+quit
+.endc
+
+.end

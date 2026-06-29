@@ -1,0 +1,97 @@
+
+Checking parameters for BSIM 4.8 model xm1:sky130_fd_pr__nfet_01v8_lvt__model.6
+Warning: TNOIMOD=1 is not supported and may be removed from future version.
+
+Note: No compatibility mode selected!
+
+
+Circuit: * nmos id–vgs sweep (sky130) 
+
+Doing analysis at TEMP = -196.150000 and TNOM = 27.000000
+
+ Reference value :  0.00000e+00/home/oliviag/ngspice-skywater-sims/nfet_mod/l_20p0_w_0p64
+/home/oliviag/ngspice-skywater-sims/nfet_mod/l_20p0_w_0p64
+/home/oliviag/ngspice-skywater-sims/nfet_mod/l_20p0_w_0p64
+
+No. of Data Rows : 2046
+
+
+
+
+
+
+
+List of plots available:
+
+Current dc1	* nmos id–vgs sweep (sky130)  (DC transfer characteristic)
+	const	Constant values (constants)
+Here are the vectors currently active:
+
+Title: * nmos id–vgs sweep (sky130) 
+Name: dc1 (DC transfer characteristic)
+Date: Wed Jun 24 18:07:06  2026
+
+    gate                : voltage, real, 2046 long
+    m.xm1.msky130_fd_pr__nfet_01v8_lvt#body: voltage, real, 2046 long
+    m.xm1.msky130_fd_pr__nfet_01v8_lvt#dbody: voltage, real, 2046 long
+    m.xm1.msky130_fd_pr__nfet_01v8_lvt#sbody: voltage, real, 2046 long
+    v-sweep             : voltage, real, 2046 long [default scale]
+    vdd                 : voltage, real, 2046 long
+    vds#branch          : current, real, 2046 long
+    vgs#branch          : current, real, 2046 long
+Reset re-loads circuit * nmos id–vgs sweep (sky130) 
+
+Circuit: * nmos id–vgs sweep (sky130) 
+
+Doing analysis at TEMP = -196.150000 and TNOM = 27.000000
+
+
+No. of Data Rows : 186
+List of plots available:
+
+Current dc2	* nmos id–vgs sweep (sky130)  (DC transfer characteristic)
+	dc1	* nmos id–vgs sweep (sky130)  (DC transfer characteristic)
+	const	Constant values (constants)
+Here are the vectors currently active:
+
+Title: * nmos id–vgs sweep (sky130) 
+Name: dc2 (DC transfer characteristic)
+Date: Wed Jun 24 18:07:06  2026
+
+    gate                : voltage, real, 186 long
+    m.xm1.msky130_fd_pr__nfet_01v8_lvt#body: voltage, real, 186 long
+    m.xm1.msky130_fd_pr__nfet_01v8_lvt#dbody: voltage, real, 186 long
+    m.xm1.msky130_fd_pr__nfet_01v8_lvt#sbody: voltage, real, 186 long
+    v-sweep             : voltage, real, 186 long [default scale]
+    vdd                 : voltage, real, 186 long
+    vds#branch          : current, real, 186 long
+    vgs#branch          : current, real, 186 long
+Reset re-loads circuit * nmos id–vgs sweep (sky130) 
+
+Circuit: * nmos id–vgs sweep (sky130) 
+
+Doing analysis at TEMP = -196.150000 and TNOM = 27.000000
+
+
+No. of Data Rows : 2046
+List of plots available:
+
+Current dc3	* nmos id–vgs sweep (sky130)  (DC transfer characteristic)
+	dc2	* nmos id–vgs sweep (sky130)  (DC transfer characteristic)
+	dc1	* nmos id–vgs sweep (sky130)  (DC transfer characteristic)
+	const	Constant values (constants)
+Here are the vectors currently active:
+
+Title: * nmos id–vgs sweep (sky130) 
+Name: dc3 (DC transfer characteristic)
+Date: Wed Jun 24 18:07:06  2026
+
+    gate                : voltage, real, 2046 long
+    m.xm1.msky130_fd_pr__nfet_01v8_lvt#body: voltage, real, 2046 long
+    m.xm1.msky130_fd_pr__nfet_01v8_lvt#dbody: voltage, real, 2046 long
+    m.xm1.msky130_fd_pr__nfet_01v8_lvt#sbody: voltage, real, 2046 long
+    v-sweep             : voltage, real, 2046 long [default scale]
+    vdd                 : voltage, real, 2046 long
+    vds#branch          : current, real, 2046 long
+    vgs#branch          : current, real, 2046 long
+Note: Simulation executed from .control section 

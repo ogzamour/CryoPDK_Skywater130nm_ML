@@ -1,0 +1,26 @@
+* NMOS Id–Vgs sweep (Sky130)
+.options scale=1.0
+.options temp=-196.15
+.lib "/home/oliviag/skywater130nm/volare/sky130/versions/a918dc7c8e474a99b68c85eb3546b4ed91fe9e7b/sky130A/libs.tech/ngspice/sky130.lib.spice" tt
+
+* Drain bias
+VDS DRAIN 0 1.85
+
+* Gate sweep source
+VGS GATE 0 1.85
+
+* MOSFET
+XM1 DRAIN GATE 0 0 sky130_fd_pr__nfet_01v8_lvt w=1.6u l=0.15u nf=1 ad=0.384p as=0.384p pd=2.08u ps=2.08u
+
+* DC sweep
+.dc VGS 0 1.85 0.01
+
+.control
+run
+set filetype=ascii
+showmod m.xm1.msky130_fd_pr__nfet_01v8_lvt : vth0 u0 rdsw nfactor vsat eta0 delta
+wrdata singleSweepVGS.txt v(GATE) i(VDS)
+quit
+.endc
+
+.end

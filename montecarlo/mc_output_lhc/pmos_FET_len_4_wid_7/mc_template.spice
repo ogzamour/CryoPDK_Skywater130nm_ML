@@ -1,0 +1,10 @@
+* NMOS sweep (Sky130) 
+
+
+XM1 DRAIN GATE 0 0 sky130_fd_pr__pfet_01v8_lvt l=4 w=7 mult=3 m=3 nf=1 ad='floor((nf+1)/2) * w/nf * 0.29' as='floor((nf+2)/2) * w/nf * 0.29' pd='2 * floor((nf+1)/2) * (w/nf + 0.29)' ps='2 * floor((nf+2)/2) * (w/nf + 0.29)' nrd='0.29 / w' nrs='0.29 / w' sa=0 sb=0 sd=0 
+.lib "/home/oliviag/skywater130nm/volare/sky130/versions/a918dc7c8e474a99b68c85eb3546b4ed91fe9e7b/sky130A/libs.tech/ngspice/sky130.lib.spice" tt_77k
+
+Vgs gate GND 0
+Vds VDD GND 1.48
+.temp -196.15
+

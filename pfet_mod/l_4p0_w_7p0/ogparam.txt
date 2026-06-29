@@ -1,0 +1,4 @@
+ BSIM4 models (Berkeley Short Channel IGFET Model-4)
+      model xm1:sky130_fd_pr__pfe
+
+       vth0              -1.19022         u0             0.0373221       rdsw               10306.9    nfactor               38.8638       vsat           7.39282e+08       eta0                   0.2      delta             -0.011931

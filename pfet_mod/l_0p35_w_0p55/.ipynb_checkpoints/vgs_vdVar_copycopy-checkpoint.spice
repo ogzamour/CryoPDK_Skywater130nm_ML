@@ -1,0 +1,44 @@
+* PMOS Id–Vgs sweep (Sky130) 
+*.options compatibility=hspice
+*.options kboltz=1.380649e-23 charge=1.60217663e-19
+*.options gmin=1e-15 abstol=1e-13 chgtol=1e-16 rtol=0.001
+.options scale=1.0
+*.options tnom=-196.15
+*.options reltol=1e-5 abstol=1e-14 vntol=1e-7 gmin=1e-15
+*.options chgtol=1e-15 method=gear
+.lib "/home/oliviag/skywater130nm/volare/sky130/versions/a918dc7c8e474a99b68c85eb3546b4ed91fe9e7b/sky130A/libs.tech/ngspice/sky130.lib.spice" tt_77k 
+
+
+XM1 VDD gate GND GND sky130_fd_pr__pfet_01v8_lvt \
++ l=0.35u w=1.6u nf=1 m=3 \
++ ad='int((nf+1)/2)*w/nf*0.29' \
++ as='int((nf+2)/2)*w/nf*0.29' \
++ pd='2*int((nf+1)/2)*(w/nf+0.29)' \
++ ps='2*int((nf+2)/2)*(w/nf+0.29)' \
++ nrd='0.29/w' \
++ nrs='0.29/w' \
++ sa=0 sb=0 sd=0
+*XM1 VDD gate GND GND sky130_fd_pr__pfet_01v8_lvt l=0.35u w=1.6u nf=1 m=3
+Vgs gate GND 0
+Vds VDD GND -1.48
+ *begin user architecture code
+
+
+.temp -196.15
+
+
+.control
+compose vd_vals values 0.01 0.37  0.74  1.11  1.48  1.85
+foreach idx 0 1 2 3 4 5
+    let currentvd = vd_vals[$idx]
+    alter Vds -$&currentvd
+    save gate vds#branch vdd
+    dc Vgs 0 -1.85 -0.01
+
+    wrdata /home/oliviag/ngspice-skywater-sims/pfet_mod/l_0p35_w_0p55/vg_sweep/p_vgs_sweep_step{$idx}.txt gate vds#branch vdd
+
+end
+
+.endc
+
+.end
