@@ -134,7 +134,7 @@ Vds VDD GND {biasV}
         
     return outFile
 #//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-'''start_time = time.perf_counter()
+start_time = time.perf_counter()
 folder = datetime.now().strftime(f"{N_RUNS}_runs_data_%Y-%m-%d_%H-%M-%S")
 
 #device setup
@@ -322,15 +322,15 @@ logFile = os.path.join(run_dir, "mc_run.log")
 with open(logFile, 'w') as log:
     subprocess.run(["ngspice", "-b","-q", "mc_run.spice"], stdout=log, stderr=subprocess.STDOUT)#, capture_output=True, text=True)
 
-makeCSV(run_dir, N_RUNS)'''
+makeCSV(run_dir, N_RUNS)
 run_dir = '/home/oliviag/ngspice-skywater-sims/montecarlo/mc_output_lhc/nmos_FET_len_0p15_wid_1p6/10000_runs_data_2026-07-09_19-36-16'
 getIvVg(N_RUNS, run_dir)
 getIvVd(N_RUNS, run_dir)
 
 
-#end_time = time.perf_counter()
-#duration = end_time - start_time
-#print(f"Task completed in {duration:.4f} seconds.")
+end_time = time.perf_counter()
+duration = end_time - start_time
+print(f"Task completed in {duration:.4f} seconds.")
     
 
     #getIvVd(N_RUNS, output_dir, folder, paramV)
