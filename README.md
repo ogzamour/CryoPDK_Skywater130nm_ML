@@ -89,6 +89,6 @@ After both are run, ensure the paths in getRMS.py match your directory (for both
 
 
 ## Montecarlo
-To run a montecarlo simulation for all parameters on all device, run ```python nomSweep_latinHypercube.py``` in the montecarlo directory. The output will be in ```mc_output_lhc``` and all sweep data will be in 3 CSV files.
+To run a montecarlo simulation for all parameters on all device, run ```python nomSweep_latinHypercube.py``` in the montecarlo directory. The output will be in ```mc_output_lhc``` and all sweep data will be in 2 CSV files per parameter sweep.
 
   
