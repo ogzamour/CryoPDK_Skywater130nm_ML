@@ -3,8 +3,10 @@ import numpy as np
 #//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ashish_dir = '/home/oliviag/ngspice-skywater-sims/outside_data/'
 pMeas_Dir = '/home/oliviag/Skywater-130nm-77K-Cryogenic-Models/cryo_data/'
+hspicePath = "/home/oliviag/ngspice-skywater-sims/outside_data"
 pSim_Dir = '/home/oliviag/ngspice-skywater-sims/pfet_mod/'
 nSim_Dir = '/home/oliviag/ngspice-skywater-sims/nfet_mod/'
+simPathSmall = "/home/oliviag/ngspice-skywater-sims/pfet_mod/l_0p35_w_1p6/vg_sweep"
 #//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 pmos_geometries = [
     {"display_name": "L=0.35u W=0.55u", "meas_dir": "pmos_FET_len_0p35_wid_0p55", "mod_vd": "l_0p35_w_0p55/vd_sweep/", "mod_vg": "l_0p35_w_0p55/vg_sweep/", "vg_floor": 1e-10, "vd_floor": 0},
@@ -33,6 +35,16 @@ nmos_geometries = [
 
 
 # --- FILE SUB-PAIRS ---
+simVG_pfet = [
+    #"idVg_vd_0p000.txt",
+    "idVg_vd_0p010.txt",
+    "idVg_vd_0p370.txt",
+    "idVg_vd_0p740.txt",
+    "idVg_vd_1p110.txt",
+    "idVg_vd_1p480.txt",
+    #"idVg_vd_1p665.txt",
+    "idVg_vd_1p850.txt"
+]
 p_vds_pairs = [
     ('idVd_vg_0p370.txt', 'idvd_Vg-0p37.csv'),
     ('idVd_vg_0p740.txt', 'idvd_Vg-0p74.csv'),
@@ -74,6 +86,23 @@ ashish = [
     ("idVg_vd_1p480.txt", 'idvg_Vd-1p48.csv', 'idVg_vd_1p480.txt' )
 ]
 
+hspice_vg_large = [
+    "idvg_lmin_2e-06_lmax_4e-06_wmin_3p0e-06_wmax_5p0e-06_cryo.mod-drain-0.01_source0.0_bulk0.0.csv",
+    "idvg_lmin_2e-06_lmax_4e-06_wmin_3p0e-06_wmax_5p0e-06_cryo.mod-drain-0.37_source0.0_bulk0.0.csv",
+    "idvg_lmin_2e-06_lmax_4e-06_wmin_3p0e-06_wmax_5p0e-06_cryo.mod-drain-0.74_source0.0_bulk0.0.csv",
+    "idvg_lmin_2e-06_lmax_4e-06_wmin_3p0e-06_wmax_5p0e-06_cryo.mod-drain-1.11_source0.0_bulk0.0.csv",
+    "idvg_lmin_2e-06_lmax_4e-06_wmin_3p0e-06_wmax_5p0e-06_cryo.mod-drain-1.48_source0.0_bulk0.0.csv",
+    "idvg_lmin_2e-06_lmax_4e-06_wmin_3p0e-06_wmax_5p0e-06_cryo.mod-drain-1.85_source0.0_bulk0.0.csv"
+]
+hspice_vg_small = [
+    "idvg_lmin_3p5e-07_lmax_5e-07_wmin_1e-06_wmax_3p0e-06_cryo.mod-drain-0.01_source0.0_bulk0.0.csv",
+    "idvg_lmin_3p5e-07_lmax_5e-07_wmin_1e-06_wmax_3p0e-06_cryo.mod-drain-0.37_source0.0_bulk0.0.csv",
+    "idvg_lmin_3p5e-07_lmax_5e-07_wmin_1e-06_wmax_3p0e-06_cryo.mod-drain-0.74_source0.0_bulk0.0.csv",
+    "idvg_lmin_3p5e-07_lmax_5e-07_wmin_1e-06_wmax_3p0e-06_cryo.mod-drain-1.11_source0.0_bulk0.0.csv",
+    "idvg_lmin_3p5e-07_lmax_5e-07_wmin_1e-06_wmax_3p0e-06_cryo.mod-drain-1.48_source0.0_bulk0.0.csv",
+    "idvg_lmin_3p5e-07_lmax_5e-07_wmin_1e-06_wmax_3p0e-06_cryo.mod-drain-1.85_source0.0_bulk0.0.csv"
+] #model 3
+
 #//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 def curveRRMS(I_measTot, I_simTot):
     RRMS_numSum = 0
@@ -89,6 +118,7 @@ def curveRRMS(I_measTot, I_simTot):
     else:
         RRMS_k = rmse / mean_meas'''
     RRMS_k = rmse / mean_meas
+    #print(RRMS_k)
     
     return RRMS_k
 #//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -176,6 +206,31 @@ def loadCurrentVals(sim_path, meas_path, vth, sim_cols, meas_cols, meas_skip):
 
     return filtered_i_sim[:min_len], filtered_i_meas[:min_len]
 #//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+#PMOS
+dev_rrmsK = []
+dev_sig = []
+
+for simVG, hspiceVG in zip(simVG_pfet, hspice_vg_small):
+    pHspice = os.path.join(hspicePath, hspiceVG)
+    pNgVg = os.path.join(simPathSmall, simVG)
+    current_h = np.loadtxt(pHspice, skiprows=1, delimiter=',',  usecols=2, unpack=True)
+    wholeI = np.loadtxt(pNgVg, usecols=3, unpack=True) 
+    hLen = len(current_h)
+    ngLen = len(wholeI)
+    floor = ngLen - hLen
+    if floor > 0:
+        current_ng = wholeI[floor:]
+        #print(current_ng)
+    else:
+        current_ng = wholeI
+    rrms_single = curveRRMS(np.abs(current_h), np.abs(current_ng))
+    dev_rrmsK.append(rrms_single)
+totalRRMS = np.mean(dev_rrmsK)
+print(totalRRMS)
+    
+    
+
+'''#//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 #PMOS
 dev_rrmsK = []
 dev_sig = []
@@ -346,7 +401,7 @@ print(f"Total NMOS Std Dev: {nmos_sig_TOT}")
 final_rrms = (nmos_rrms_TOT + rrms_TOT) / 2
 print(f"Final Combined RRMS: {final_rrms}")
 final_sig = (nmos_sig_TOT + sig_TOT) / 2
-print(f"Final Combined Sigma: {final_sig}")
+print(f"Final Combined Sigma: {final_sig}")'''
 
 
 '''hDev = nmos_geometries[0]

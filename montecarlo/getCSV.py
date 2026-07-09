@@ -3,7 +3,7 @@ import numpy as np
 import os
 import sys
 
-def getConf(base_dir):
+'''def getConf(base_dir):
     configs = [
         
             #"file": os.path.join(base_dir, "vgs_sweep.dat"),
@@ -15,7 +15,7 @@ def getConf(base_dir):
         
     ]
 
-    return config
+    return config'''
 #//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 def format_val(x):
     """Converts float values to a safe filename string (e.g., 0.185 -> 0p185)"""
@@ -105,17 +105,36 @@ def process_and_split_to_csv(base_dir, n):
     #print(f"Done. Successfully generated {total_csv_written} CSV files.")
 #//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-def makeCSV(path1, out):
+def makeCSV(runPath, simNum):
+    index = list(range(simNum))
+    for i in index:
     
-    for i in inde:
-    
-        input_file = f"/home/oliviag/ngspice-skywater-sims/sim_data_vd/{i}_mosfetvgs_mc_all.dat"
-        output_file = f"/home/oliviag/ngspice-skywater-sims/sim_data_vd/{i}_mosfetVGS_MC_all.csv"
+        #input_file = f"/home/oliviag/ngspice-skywater-sims/sim_data_vd/{i}_mosfetvgs_mc_all.dat"
+        #output_file = f"/home/oliviag/ngspice-skywater-sims/sim_data_vd/{i}_mosfetVGS_MC_all.csv"
+        input_vg = f"{runPath}/run_{i}/vgs_sweep.dat"
+        output_vg = f"{runPath}/run_{i}/vgs_sweep.csv"
+
+        input_vd = f"{runPath}/run_{i}/vds_sweep.dat"
+        output_vd = f"{runPath}/run_{i}/vds_sweep.csv"
         
+
         
-        headers = ["vSweep", "run_num", "vd", "id", "vth0", "u0", "rdsw", "nfactor", "vsat", "eta0"]
+        headers = ["vSweep", "vd", "vg", "id", "vth0_nom", "u0_nom", "rdsw_nom", "nfactor_nom", "vsat_nom", "eta0_nom", "delta_nom"]
         
-        with open(input_file, 'r') as infile, open(output_file, 'w', newline='') as outfile:
+        with open(input_vg, 'r') as infile, open(output_vg, 'w', newline='') as outfile:
+            writer = csv.writer(outfile)
+            
+       
+            writer.writerow(headers)
+            
+           
+            next(infile) 
+            for line in infile:
+               
+                row = [val for val in line.strip().split() if val]
+                if row:
+                    writer.writerow(row)
+        with open(input_vd, 'r') as infile, open(output_vd, 'w', newline='') as outfile:
             writer = csv.writer(outfile)
             
        

@@ -12,7 +12,8 @@ from scipy.stats import qmc
 
 
 #SPICE_FILE = "paramMC_vds_sweep.spice"
-PARENT_DIR = Path("/home/oliviag/ngspice-skywater-sims/montecarlo/mc_output_LHC")
+PARENT_DIR = Path("/home/oliviag/ngspice-skywater-sims/montecarlo/mc_output_lhc")
+target_dev = 1
 #//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 def getParamOriginal(fet_type, devName, devDir, circuit):
     filePath_s = os.path.join(devDir, "ogparam.txt")
@@ -27,7 +28,8 @@ def getParamOriginal(fet_type, devName, devDir, circuit):
     pc_control = [f"""* getParam
 
         .lib "/home/oliviag/skywater130nm/volare/sky130/versions/a918dc7c8e474a99b68c85eb3546b4ed91fe9e7b/sky130A/libs.tech/ngspice/sky130.lib.spice" tt_77k
-        {circuit}"""
+        {circuit}
+        .temp=-196.15"""
 
 ]
     if fet_type == 0:
@@ -37,23 +39,25 @@ def getParamOriginal(fet_type, devName, devDir, circuit):
             run
             set filetype=ascii
             
-            showmod m.xm1.msky130_fd_pr__nfet_01v8_lvt : vth0 u0 rdsw nfactor vsat eta0 delta > ogparam.txt
+            *showmod m.xm1.msky130_fd_pr__nfet_01v8_lvt : vth0 u0 rdsw nfactor vsat eta0 delta > ogparam.txt
             
             
             .endc
             .end"""]
     else:
     
-        p_control = [f"""
+        p_control = ["""
         .control
         run
+        .options savecurrentparams
         set filetype=ascii
         
         showmod m.xm1.msky130_fd_pr__pfet_01v8_lvt : vth0 u0 rdsw nfactor vsat eta0 delta > ogparam.txt
-        
+        *show xm1.msky130_fd_pr__pfet_01v8_lvt : vth0_nom dvt0_nom dvt1_nom vsat_nom ua_nom ub_nom uc_nom rdsw_nom prwg_nom u0_nom rdw_nom rsw_nom nfactor_nom eta0 dsub_nom pclm_nom pvag_nom delta_nom > ogparam.txt
+      
         .endc
         .end"""]
-        
+    filePar = os.path.join(devDir, "paramExt.spice")
     with open("mc_run.spice", "w+") as f:
     # Pre-read the base template so you don't read it from disk over and over
         base_template = pc_control
@@ -132,20 +136,22 @@ devices_p = [('pmos_FET_len_8_wid_0p84', "XM1 DRAIN GATE 0 0 sky130_fd_pr__pfet_
           ]
            
 
-for dev in devices_n:
-    tp = 0
-    dev_name = dev[0]
-    dev_circ = dev[1]
-    
-    dev_dir = PARENT_DIR / dev_name
-    parameterFile = os.path.join(dev_dir, "ogparam.txt")
-    cleaned = os.path.join(dev_dir, "model_parameters.txt")
-    format_spice_params(parameterFile, cleaned)
-    #dev_dir.mkdir(parents=True, exist_ok=True)
+#for dev in devices_n:
+dev = devices_p[target_dev]
+tp = 1
+dev_name = dev[0]
+dev_circ = dev[1]
 
-    #getParamOriginal(tp, dev_name, dev_dir, dev_circ)
+dev_dir = PARENT_DIR / dev_name
+parameterFile = os.path.join(dev_dir, "ogparam.txt")
+getParamOriginal(tp, dev_name, dev_dir, dev_circ)
+cleaned = os.path.join(dev_dir, "model_parameters.txt")
+format_spice_params(parameterFile, cleaned)
+#dev_dir.mkdir(parents=True, exist_ok=True)
 
-for dev in devices_p:
+
+
+'''for dev in devices_p:
     tp = 1
     dev_name = dev[0]
     dev_circ = dev[1]
@@ -155,4 +161,4 @@ for dev in devices_p:
     cleaned = os.path.join(dev_dir, "model_parameters.txt")
     format_spice_params(parameterFile, cleaned)
     #dev_dir.mkdir(parents=True, exist_ok=True)
-    #getParamOriginal(tp, dev_name, dev_dir, dev_circ)
+    #getParamOriginal(tp, dev_name, dev_dir, dev_circ)'''
