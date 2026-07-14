@@ -179,7 +179,7 @@ control_lines = [
 
 ]
 for idx, run in enumerate(lhs_runs):
-    v_vth0, v_u0, v_rdsw, v_nfactor, v_vsat, v_eta0, v_delta = run
+    v_vth0, v_vsat, v_rdsw, v_u0, v_nfactor, v_eta0, v_delta = run
     runPath = Path(run_dir)
     outdir = f"run_{idx}"
     outPath = runPath / outdir
@@ -328,9 +328,9 @@ getIvVg(N_RUNS, run_dir)
 getIvVd(N_RUNS, run_dir)
 
 
-#end_time = time.perf_counter()
-#duration = end_time - start_time
-#print(f"Task completed in {duration:.4f} seconds.")
+end_time = time.perf_counter()
+duration = end_time - start_time
+print(f"Task completed in {duration:.4f} seconds.")
     
 
     #getIvVd(N_RUNS, output_dir, folder, paramV)
