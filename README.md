@@ -83,12 +83,12 @@ These can be run by typing ```ngspice -b <desiredSimFile>.spice``` in the termin
 To get the RRMS calculation for the scripts, first ensure you have the cryo_data file from the paper repo downloaded. Also ensure both the nfet and pfet 77k corners are installed properly and defined in the .lib file.
 Then, run ```python runAll.py``` in both the nfet_mod and pfet_mod directories ***Note: will have to change path in the .include***
 
-After both are run, ensure the paths in getRMS.py match your directory (for both the cryo data and modeled pfet/nfet data). Then, run ```python rrmsCalc.py``` in the ngspice-skywater-sims directory and the RRMS should print in terminal.
+After both are run, ensure the paths in getRMS.py match your directory (for both the cryo data and modeled pfet/nfet data). Then, run ```python rrmsCalc.py``` in the RRMS directory and the RRMS should print in terminal.
 
 ***could also choose to not rerun pfet/nfet models since the output files are included already in repo***
 
 
 ## Montecarlo
-To run a montecarlo simulation for all parameters on all device, run ```python nomSweep_latinHypercube.py``` in the montecarlo directory. The output will be in ```mc_output_lhc``` and all sweep data will be in 2 CSV files per parameter sweep.
+To run a montecarlo simulation for all parameters on all device, run ```python nomSweep_latinHypercube.py``` in the montecarlo directory. The output will be in ```mc_output_lhc``` and all sweep data will be in 1 CSV files per parameter vg sweep. (Option to save vd sweeps can also be set, and bias voltage can be changed)
 
   
