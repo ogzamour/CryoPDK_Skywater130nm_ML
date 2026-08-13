@@ -1,0 +1,92 @@
+* NMOS Id–Vgs sweep (Sky130) 
+*.options compatibility=hspice
+*.options kboltz=1.380649e-23 charge=1.60217663e-19
+*.options gmin=1e-15 abstol=1e-13 chgtol=1e-16 rtol=0.001
+*.options scale=1.0
+*.options tnom=-196.15
+*.options reltol=1e-5 abstol=1e-14 vntol=1e-7 gmin=1e-15
+*.options chgtol=1e-15 method=gear
+
+XM1 VDD gate GND GND sky130_fd_pr__nfet_01v8_lvt l=100 w=100 nf=1 ad='floor((nf+1)/2) * w/nf * 0.29' as='floor((nf+2)/2) * w/nf * 0.29' pd='2 * floor((nf+1)/2) * (w/nf + 0.29)' ps='2 * floor((nf+2)/2) * (w/nf + 0.29)' nrd='0.29 / w' nrs='0.29 / w' mult=1 m=1 
+*sa=0 sb=0 sd=0 
+*vgnd GND 0 0
+Vgs gate GND 0
+Vds VDD GND 1.48
+
+.lib "/home/oliviag/skywater130nm/volare/sky130/versions/a918dc7c8e474a99b68c85eb3546b4ed91fe9e7b/sky130A/libs.tech/ngspice/sky130.lib.spice" tt_77k 
+ *begin user architecture code
+
+
+.temp -196.15
+*.tnom -196.15
+
+
+.control
+  set noaskquit
+
+
+
+*TRANSFER CHARACTERISTIC: Id vs Vgs (stepping Vds)
+*save i(Vds) v(gate) v(vdd)
+
+dc Vgs 0 1.85 0.01  Vds 0 1.85 0.185
+  showmod m.xm1.msky130_fd_pr__nfet_01v8_lvt : vth0 u0 rdsw nfactor vsat eta0 delta
+  set curplottype=family
+
+showmod m.xm1.msky130_fd_pr__nfet_01v8_lvt : vth0 u0 rdsw nfactor vsat eta0 delta > ogparam.txt
+
+    setplot
+    display
+    shell pwd
+    let id_axis = -vds#branch
+    set raw_array = ( `cat ogparam.txt` )
+    set vth_axis = $raw_array[11]
+   wrdata vg_sweep/p_vgs_sweep_family.txt gate id_axis vdd $vth_axis
+reset
+dc Vgs 0 1.85 0.01  Vds 0.01 0.01 1
+  
+  set curplottype=family
+
+    setplot
+    display
+    shell pwd
+    let idB = -vds#branch
+    set raw_array = ( `cat ogparam.txt` )
+    set vth_axis = $raw_array[11]
+   wrdata vg_sweep/idVg_vd_0p010.txt gate idB vdd $vth_axis
+    *shell ls -l test.txt
+*wrdata /home/oliviag/ngspice-skywater-sims/pfet_mod/l_0p35_w_1p6/vg_sweep/p_vgs_sweep_family.txt v(gate)  i(Vds) v(vdd)
+
+
+
+* OUTPUT CHARACTERISTIC: Id vs Vds (stepping Vgs)
+reset
+  *save i(Vds) v(gate) v(vdd)
+  dc Vds 0 1.85 0.01  Vgs 0 1.85 0.185
+setplot
+display
+shell pwd
+  set curplottype=family
+  *plot -i(Vds) vs v(vdd)
+    let ax_id = -vds#branch
+    set raw_array = ( `cat ogparam.txt` )
+    set vth_axis = $raw_array[11]
+wrdata vd_sweep/p_vds_sweep_family.txt gate ax_id vdd $vth_axis
+ 
+
+  set filetype=csv
+  *wrdata  /home/oliviag/ngspice-skywater-sims/pfet_mod/l_0p35_w_1p6/vd_sweep/p_vds_sweep_family.csv v(gate)  -i(Vds) v(vdd)
+.endc
+
+
+
+
+
+*.save all
+
+
+* end user architecture code
+
+.GLOBAL GND
+.GLOBAL VDD
+.end

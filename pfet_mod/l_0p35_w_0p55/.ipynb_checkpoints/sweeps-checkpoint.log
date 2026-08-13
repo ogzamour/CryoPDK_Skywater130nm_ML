@@ -1,0 +1,179 @@
+
+Checking parameters for BSIM 4.8 model xm1:sky130_fd_pr__pfet_01v8_lvt__model.5
+Fatal: Delta = -0.034084 is less than zero.
+Warning: TNOIMOD=1 is not supported and may be removed from future version.
+Fatal error: detected during BSIM4.8.2 parameter checking for 
+    model xm1:sky130_fd_pr__pfet_01v8_lvt__model.5 of device instance m.xm1.msky130_fd_pr__pfet_01v8_lvt
+
+doAnalyses: no such parameter on this device
+
+dc simulation(s) aborted
+/home/oliviag/ngspice-skywater-sims/pfet_mod/l_0p35_w_0p55
+Warning from checkvalid: vector vds#branch is not available or has zero length.
+Error: RHS "-vds#branch" invalid
+Error: no such vector gate
+Note: Starting dynamic gmin stepping
+Trying gmin =   1.0000E-03 Warning: Further gmin increment
+Trying gmin =   5.6234E-03 Warning: Further gmin increment
+Trying gmin =   8.6596E-03 Warning: Further gmin increment
+Trying gmin =   9.6466E-03 Warning: Further gmin increment
+Trying gmin =   9.9105E-03 Warning: Further gmin increment
+Trying gmin =   9.9775E-03 Warning: Further gmin increment
+Trying gmin =   9.9944E-03 Warning: Further gmin increment
+Trying gmin =   9.9986E-03 Warning: Further gmin increment
+Trying gmin =   9.9996E-03 Warning: Last gmin step failed
+Warning: Dynamic gmin stepping failed
+Note: Starting true gmin stepping
+Trying gmin =   1.0000E-03 Warning: Further gmin increment
+Trying gmin =   5.6234E-03 Warning: Further gmin increment
+Trying gmin =   8.6596E-03 Warning: Further gmin increment
+Trying gmin =   9.6466E-03 Warning: Further gmin increment
+Trying gmin =   9.9105E-03 Warning: Further gmin increment
+Trying gmin =   9.9775E-03 Warning: Further gmin increment
+Trying gmin =   9.9944E-03 Warning: Further gmin increment
+Trying gmin =   9.9986E-03 Warning: Further gmin increment
+Trying gmin =   9.9996E-03 Warning: Last gmin step failed
+Warning: True gmin stepping failed
+Note: Starting source stepping
+Supplies reduced to   0.0000% 
+Trying gmin =   1.0000E-02 Warning: gmin step failed
+Warning: source stepping failed
+Note: Transient op started
+Error: Transient op failed, timestep too small
+
+doAnalyses: DC:  Timestep too small;  vgs = 0:  vds = -0.01: cause unrecorded.
+
+
+dc simulation(s) aborted
+/home/oliviag/ngspice-skywater-sims/pfet_mod/l_0p35_w_0p55
+Warning from checkvalid: vector vds#branch is not available or has zero length.
+Error: RHS "-vds#branch" invalid
+Error: no such vector gate
+Note: Starting dynamic gmin stepping
+Trying gmin =   1.0000E-03 Warning: Further gmin increment
+Trying gmin =   5.6234E-03 Note: One successful gmin step
+Trying gmin =   2.3714E-03 Note: One successful gmin step
+Trying gmin =   6.4938E-04 Note: One successful gmin step
+Trying gmin =   9.3057E-05 Note: One successful gmin step
+Trying gmin =   9.3057E-06 Note: One successful gmin step
+Trying gmin =   9.3057E-07 Note: One successful gmin step
+Trying gmin =   9.3057E-08 Note: One successful gmin step
+Trying gmin =   9.3057E-09 Note: One successful gmin step
+Trying gmin =   9.3057E-10 Note: One successful gmin step
+Trying gmin =   9.3057E-11 Note: One successful gmin step
+Trying gmin =   9.3057E-12 Note: One successful gmin step
+Trying gmin =   1.0000E-12 Note: One successful gmin step
+Note: Dynamic gmin stepping completed
+
+Note: No compatibility mode selected!
+
+
+Circuit: * pmos id–vgs sweep (sky130) 
+
+Doing analysis at TEMP = -196.150000 and TNOM = 27.000000
+
+List of plots available:
+
+Current const	Constant values (constants)
+Here are the vectors currently active:
+
+Title: Constant values
+Name: const (constants)
+Date: Mon Mar 25 19:05:40 UTC 2024
+
+    FALSE               : notype, real, 1 long
+    TRUE                : notype, real, 1 long
+    boltz               : notype, real, 1 long
+    c                   : notype, real, 1 long
+    e                   : notype, real, 1 long
+    echarge             : notype, real, 1 long
+    i                   : notype, complex, 1 long
+    kelvin              : notype, real, 1 long
+    no                  : notype, real, 1 long
+    pi                  : notype, real, 1 long
+    planck              : notype, real, 1 long
+    yes                 : notype, real, 1 long [default scale]
+Reset re-loads circuit * pmos id–vgs sweep (sky130) 
+
+Circuit: * pmos id–vgs sweep (sky130) 
+
+Doing analysis at TEMP = -196.150000 and TNOM = 27.000000
+
+List of plots available:
+
+Current dc1	* pmos id–vgs sweep (sky130)  (DC transfer characteristic)
+	const	Constant values (constants)
+Here are the vectors currently active:
+
+Title: * pmos id–vgs sweep (sky130) 
+Name: dc1 (DC transfer characteristic)
+Date: Wed Jun 17 18:56:17  2026
+
+    gate                : voltage, real, 0 long
+    m.xm1.msky130_fd_pr__pfet_01v8_lvt#body: voltage, real, 0 long
+    m.xm1.msky130_fd_pr__pfet_01v8_lvt#dbody: voltage, real, 0 long
+    m.xm1.msky130_fd_pr__pfet_01v8_lvt#sbody: voltage, real, 0 long
+    v-sweep             : voltage, real, 0 long [default scale]
+    vdd                 : voltage, real, 0 long
+    vds#branch          : current, real, 0 long
+    vgs#branch          : current, real, 0 long
+Reset re-loads circuit * pmos id–vgs sweep (sky130) 
+
+Circuit: * pmos id–vgs sweep (sky130) 
+
+Doing analysis at TEMP = -196.150000 and TNOM = 27.000000
+
+ Reference value :  0.00000e+00Note: Starting dynamic gmin stepping
+Trying gmin =   1.0000E-03 Warning: Further gmin increment
+Trying gmin =   5.6234E-03 Warning: Further gmin increment
+Trying gmin =   8.6596E-03 Warning: Further gmin increment
+Trying gmin =   9.6466E-03 Warning: Further gmin increment
+Trying gmin =   9.9105E-03 Warning: Further gmin increment
+Trying gmin =   9.9775E-03 Warning: Further gmin increment
+Trying gmin =   9.9944E-03 Warning: Further gmin increment
+Trying gmin =   9.9986E-03 Warning: Further gmin increment
+Trying gmin =   9.9996E-03 Warning: Last gmin step failed
+Warning: Dynamic gmin stepping failed
+Note: Starting true gmin stepping
+Trying gmin =   1.0000E-03 Warning: Further gmin increment
+Trying gmin =   5.6234E-03 Warning: Further gmin increment
+Trying gmin =   8.6596E-03 Warning: Further gmin increment
+Trying gmin =   9.6466E-03 Warning: Further gmin increment
+Trying gmin =   9.9105E-03 Warning: Further gmin increment
+Trying gmin =   9.9775E-03 Warning: Further gmin increment
+Trying gmin =   9.9944E-03 Warning: Further gmin increment
+Trying gmin =   9.9986E-03 Warning: Further gmin increment
+Trying gmin =   9.9996E-03 Warning: Last gmin step failed
+Warning: True gmin stepping failed
+Note: Starting source stepping
+Supplies reduced to   0.0000% 
+Trying gmin =   1.0000E-02 Warning: gmin step failed
+Warning: source stepping failed
+Note: Transient op started
+Error: Transient op failed, timestep too small
+
+doAnalyses: DC:  Timestep too small;  vds = -0.01:  vgs = 0: cause unrecorded.
+
+
+dc simulation(s) aborted
+/home/oliviag/ngspice-skywater-sims/pfet_mod/l_0p35_w_0p55
+Note: No ".plot", ".print", or ".fourier" lines; no simulations run
+List of plots available:
+
+Current dc2	* pmos id–vgs sweep (sky130)  (DC transfer characteristic)
+	dc1	* pmos id–vgs sweep (sky130)  (DC transfer characteristic)
+	const	Constant values (constants)
+Here are the vectors currently active:
+
+Title: * pmos id–vgs sweep (sky130) 
+Name: dc2 (DC transfer characteristic)
+Date: Wed Jun 17 18:56:18  2026
+
+    gate                : voltage, real, 1 long
+    m.xm1.msky130_fd_pr__pfet_01v8_lvt#body: voltage, real, 1 long
+    m.xm1.msky130_fd_pr__pfet_01v8_lvt#dbody: voltage, real, 1 long
+    m.xm1.msky130_fd_pr__pfet_01v8_lvt#sbody: voltage, real, 1 long
+    v-sweep             : voltage, real, 1 long [default scale]
+    vdd                 : voltage, real, 1 long
+    vds#branch          : current, real, 1 long
+    vgs#branch          : current, real, 1 long

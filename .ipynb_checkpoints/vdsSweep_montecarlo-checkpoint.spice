@@ -1,0 +1,131 @@
+* NMOS Id–Vgs sweep (Sky130)
+.options scale=1.0
+.options temp=-196.15
+
+.lib "/home/oliviag/skywater130nm/volare/sky130/versions/a918dc7c8e474a99b68c85eb3546b4ed91fe9e7b/sky130A/libs.tech/ngspice/sky130.lib.spice" tt_77k
+
+* Gate bias (fixed)
+VGS GATE 0 1.11
+* drain sweep source
+VDS DRAIN 0 0
+
+* MOSFET
+XM1 DRAIN GATE 0 0 sky130_fd_pr__nfet_01v8_lvt w=1.6u l=0.15u nf=1 ad=0.384p as=0.384p pd=2.08u ps=2.08u
+
+
+
+.control
+run
+set filetype=ascii
+showmod m.xm1.msky130_fd_pr__nfet_01v8_lvt : vth0 u0 rdsw nfactor vsat eta0 delta
+
+*running montecarlo sim, 1 param at at a time
+showmod m.xm1.msky130_fd_pr__nfet_01v8_lvt : vth0 u0 rdsw nfactor vsat eta0 delta > ogparam.txt
+set raw_array = ( `cat ogparam.txt` )
+  
+  define agauss(mean, sigma) (mean + sigma * sgauss(0))  
+  set nom_vth0 = $raw_array[11]
+  set nom_u0 = $raw_array[13]
+  set nom_rdsw = $raw_array[15]
+  set nom_nfactor = $raw_array[17]
+  set nom_vsat = $raw_array[19]
+  set nom_eta0 = $raw_array[21]
+  set nom_delta = $raw_array[23]
+*showmod m.xm1.msky130_fd_pr__nfet_01v8_lvt : vth0 u0 rdsw nfactor vsat eta0 delta 
+*echo "$nom_vth0"
+*controls
+  set mc_vth0 = 1
+  set mc_u0 = 0
+  set mc_rdsw = 0
+  set mc_nfactor = 0
+  set mc_vsat = 0
+  set mc_eta0 = 0
+  set mc_delta = 0
+*sigmas
+  set s_vth0 = 0.04
+  set s_u0 = 0.005
+  set s_rdsw = 5.0
+  set s_nfactor = 0.5
+  set s_vsat = 5000.0
+  set s_eta0 = 0.01
+  set s_delta = 0.01
+  echo "p0 done"
+ 
+  set mc_runs = 5
+  
+  foreach idx 0 1 2 3 4
+    echo "========================================="
+    echo " MONTE CARLO RUN: $idx "
+    echo "========================================="
+    let v_vth0 = $nom_vth0
+    let v_u0 = $nom_u0
+    let v_rdsw = $nom_rdsw
+    let v_nfactor = $nom_nfactor
+    let v_vsat = $nom_vsat
+    let v_eta0 = $nom_eta0
+    let v_delta = $nom_delta
+    echo "p1 done"
+    if ($mc_vth0)
+      let v_vth0 = agauss($nom_vth0, $s_vth0)
+    endif
+    if ($mc_u0)
+      let v_u0 = agauss($nom_u0, $s_u0)
+    endif
+    if ($mc_rdsw)
+      let v_rdsw = agauss($nom_rdsw, $s_rdsw)
+    endif
+    if ($mc_nfactor)
+      let v_nfactor = agauss($nom_nfactor, $s_nfactor)
+    endif
+    if ($mc_vsat)
+      let v_vsat = agauss($nom_vsat, $s_vsat)
+    endif
+    if ($mc_eta0)
+      let v_eta0 = agauss($nom_eta0, $s_eta0)
+    endif
+    if ($mc_delta)
+      let v_delta = agauss($nom_delta, $s_delta)
+    endif
+    echo "p2 done"
+    *showmod m.xm1.msky130_fd_pr__nfet_01v8_lvt : vth0 u0 rdsw nfactor vsat eta0 delta 
+    altermod @m.xm1.msky130_fd_pr__nfet_01v8_lvt[vth0]    = $&v_vth0
+    altermod @m.xm1.msky130_fd_pr__nfet_01v8_lvt[u0]      = $&v_u0
+    altermod @m.xm1.msky130_fd_pr__nfet_01v8_lvt[rdsw]    = $&v_rdsw
+    altermod @m.xm1.msky130_fd_pr__nfet_01v8_lvt[nfactor] = $&v_nfactor
+    altermod @m.xm1.msky130_fd_pr__nfet_01v8_lvt[vsat]    = $&v_vsat
+    altermod @m.xm1.msky130_fd_pr__nfet_01v8_lvt[eta0]    = $&v_eta0
+    altermod @m.xm1.msky130_fd_pr__nfet_01v8_lvt[delta]   = $&v_delta
+    echo "p3 done"
+    showmod m.xm1.msky130_fd_pr__nfet_01v8_lvt : vth0 u0 rdsw nfactor vsat eta0 delta
+    dc VDS 0 1.8 0.01
+
+    let out_vth0    = v_vth0*(v(drain)*0 + 1)
+    let out_u0      = v_u0 * (v(DRAIN)*0 + 1)
+    let out_rdsw    = v_rdsw * (v(DRAIN)*0 + 1)
+    let out_nfactor = v_nfactor * (v(DRAIN)*0 + 1)
+    let out_vsat    = v_vsat * (v(DRAIN)*0 + 1)
+    let out_eta0    = v_eta0 * (v(DRAIN)*0 + 1)
+    let out_delta   = v_delta * (v(DRAIN)*0 + 1)
+    let run_num     = $idx * (v(DRAIN)*0 + 1)
+    echo "p4 done"
+
+
+
+   
+    set wr_vecnames
+    set wr_singlescale
+
+  
+    set raw_file = "sim_data_vd/{$idx}_mosfetVDS_MC_all.dat"
+    wrdata $raw_file run_num v(drain) i(vds) out_vth0 out_u0 out_rdsw out_nfactor out_vsat out_eta0
+  
+    
+
+    
+  end
+
+
+quit
+.endc
+
+.end

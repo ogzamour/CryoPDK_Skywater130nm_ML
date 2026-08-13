@@ -1,0 +1,41 @@
+
+Checking parameters for BSIM 4.8 model xm1:sky130_fd_pr__nfet_01v8_lvt__model.4
+Warning: TNOIMOD=1 is not supported and may be removed from future version.
+
+Note: No compatibility mode selected!
+
+
+Circuit: * nmos id–vgs sweep (sky130)
+
+ BSIM4 models (Berkeley Short Channel IGFET Model-4)
+      model xm1:sky130_fd_pr__nfe
+
+       vth0              0.572584
+         u0              0.293366
+       rdsw               288.238
+    nfactor               7.73808
+       vsat              -3.37936
+       eta0            0.00401684
+      delta                  0.05
+
+Doing analysis at TEMP = 27.000000 and TNOM = -196.150000
+
+ Reference value :  0.00000e+00
+No. of Data Rows : 186
+Doing analysis at TEMP = 27.000000 and TNOM = -196.150000
+
+
+No. of Data Rows : 186
+Doing analysis at TEMP = 27.000000 and TNOM = -196.150000
+
+
+No. of Data Rows : 186
+Doing analysis at TEMP = 27.000000 and TNOM = -196.150000
+
+
+No. of Data Rows : 186
+Doing analysis at TEMP = 27.000000 and TNOM = -196.150000
+
+
+No. of Data Rows : 186
+Note: Simulation executed from .control section 

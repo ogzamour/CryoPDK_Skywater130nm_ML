@@ -1,0 +1,58 @@
+* PMOS Id–Vgs sweep (Sky130) 
+*.options compatibility=hspice
+*.options kboltz=1.380649e-23 charge=1.60217663e-19
+*.options gmin=1e-15 abstol=1e-13 chgtol=1e-16 rtol=0.001
+*.options scale=1.0
+*.options tnom=-196.15
+*.options reltol=1e-5 abstol=1e-14 vntol=1e-7 gmin=1e-15
+*.options chgtol=1e-15 method=gear
+
+.lib "/home/oliviag/skywater130nm/volare/sky130/versions/a918dc7c8e474a99b68c85eb3546b4ed91fe9e7b/sky130A/libs.tech/ngspice/sky130.lib.spice" tt_77k 
+XM1 VDD gate GND GND sky130_fd_pr__pfet_01v8_lvt l=0.50 w=0.64 nf=1 ad='floor((nf+1)/2) * w/nf * 0.29' as='floor((nf+2)/2) * w/nf * 0.29' pd='2 * floor((nf+1)/2) * (w/nf + 0.29)' ps='2 * floor((nf+2)/2) * (w/nf + 0.29)' nrd='0.29 / w' nrs='0.29 / w' sa=0 sb=0 sd=0 mult=2 m=2
+
+
+Vgs gate GND 0
+Vds VDD GND -1.48
+ *begin user architecture code
+
+
+.temp -196.15
+
+
+.control
+  set noaskquit
+
+
+
+*TRANSFER CHARACTERISTIC: Id vs Vgs (stepping Vds)
+*save i(Vds) v(gate) v(vdd)
+dc Vgs 0 -1.85 -0.01  Vds 0 -1.85 -0.185
+
+    let id_axis = -vds#branch
+    
+   wrdata vg_sweep/p_vgs_sweep_family.txt gate id_axis vdd 
+reset
+dc Vgs 0 -1.85 -0.01  Vds -0.01 -0.011 -1
+  
+    let idB = -vds#branch
+
+   wrdata vg_sweep/idVg_vd_0p010.txt gate idB vdd 
+    
+
+
+
+* OUTPUT CHARACTERISTIC: Id vs Vds (stepping Vgs)
+reset
+  *save i(Vds) v(gate) v(vdd)
+  dc Vds 0 -1.85 -0.01  Vgs 0 -1.85 -0.185
+
+    let ax_id = -vds#branch
+   
+wrdata vd_sweep/p_vds_sweep_family.txt gate ax_id vdd 
+ 
+
+.endc
+
+
+
+.end

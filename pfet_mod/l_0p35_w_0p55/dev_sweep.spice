@@ -1,0 +1,33 @@
+* PMOS sweep (Sky130) 
+.lib "/home/oliviag/skywater130nm/volare/sky130/versions/a918dc7c8e474a99b68c85eb3546b4ed91fe9e7b/sky130A/libs.tech/ngspice/sky130.lib.spice" tt_77k
+XM1 VDD gate GND GND sky130_fd_pr__pfet_01v8_lvt l=0.35 w=0.55 mult=1 m=1 nf=1 ad='floor((nf+1)/2) * w/nf * 0.29' as='floor((nf+2)/2) * w/nf * 0.29' pd='2 * floor((nf+1)/2) * (w/nf + 0.29)' ps='2 * floor((nf+2)/2) * (w/nf + 0.29)' nrd='0.29 / w' nrs='0.29 / w' sa=0 sb=0 sd=0 
+
+Vgs gate GND 0
+Vds VDD GND -1.48
+.temp -196.15
+
+
+.control
+set noaskquit
+set filetype=ascii
+run
+dc Vds 0 -1.85 -0.01 Vgs 0 -1.85 -0.37
+showmod m.xm1.msky130_fd_pr__pfet_01v8_lvt : vth0 u0 rdsw nfactor vsat eta0 delta
+setplot
+display
+shell pwd
+let ax_id0 = -vds#branch
+set wr_singlescale
+wrdata /home/oliviag/ngspice-skywater-sims/pfet_mod/l_0p35_w_0p55/vd_sweep/p_vds_sweep_family.txt vdd gate ax_id0
+reset
+dc Vgs 0 -1.85 -0.01  Vds 0 -1.85 -0.37
+let ax_id2 = -vds#branch
+wrdata /home/oliviag/ngspice-skywater-sims/pfet_mod/l_0p35_w_0p55/vg_sweep/p_vgs_sweep_family.txt vdd gate ax_id2
+reset
+alter Vds -0.01
+dc Vgs 0 -1.85 -0.01
+let ax_id1 = -vds#branch
+wrdata /home/oliviag/ngspice-skywater-sims/pfet_mod/l_0p35_w_0p55/vg_sweep/idVg_vd_0p010.txt vdd gate ax_id1
+quit
+.endc
+.end

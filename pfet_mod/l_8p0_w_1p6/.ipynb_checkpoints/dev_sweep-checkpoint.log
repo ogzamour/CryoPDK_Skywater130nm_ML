@@ -1,0 +1,18 @@
+Netlist line no. 2:
+Undefined parameter [nf]
+Netlist line no. 2:
+ Expression err: nf+1)/2)*w/nf*0.29} as={floor((nf+2)/2)*w/nf*0.29} pd={2*floor((nf+1)/2)*(w/nf+0.29)} ps={2*floor((nf+2)/2)*(w/nf+0.29)} nrd={0.29/w} nrs={0.29/w} sa=0 sb=0 sd=0
+Netlist line no. 2:
+ Expression err: (nf+1)/2)*w/nf*0.29} as={floor((nf+2)/2)*w/nf*0.29} pd={2*floor((nf+1)/2)*(w/nf+0.29)} ps={2*floor((nf+2)/2)*(w/nf+0.29)} nrd={0.29/w} nrs={0.29/w} sa=0 sb=0 sd=0
+Netlist line no. 2:
+ Expression err: floor((nf+1)/2)*w/nf*0.29} as={floor((nf+2)/2)*w/nf*0.29} pd={2*floor((nf+1)/2)*(w/nf+0.29)} ps={2*floor((nf+2)/2)*(w/nf+0.29)} nrd={0.29/w} nrs={0.29/w} sa=0 sb=0 sd=0
+Netlist line no. 2:
+Cannot compute substitute
+
+ERROR: fatal error in ngspice, exit(1)
+
+Note: No compatibility mode selected!
+
+
+Circuit: * pmos sweep (sky130) 
+

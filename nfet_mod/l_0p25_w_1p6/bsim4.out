@@ -1,0 +1,4 @@
+
+Checking parameters for BSIM 4.8 model xm1:sky130_fd_pr__nfet_01v8_lvt__model.2
+Warning: Eta0 = -0.130793 is negative.
+Warning: TNOIMOD=1 is not supported and may be removed from future version.

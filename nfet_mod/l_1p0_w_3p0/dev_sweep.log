@@ -1,0 +1,62 @@
+
+Checking parameters for BSIM 4.8 model xm1:sky130_fd_pr__nfet_01v8_lvt__model.4
+Warning: TNOIMOD=1 is not supported and may be removed from future version.
+
+Note: No compatibility mode selected!
+
+
+Circuit: * nmos sweep (sky130) 
+
+Doing analysis at TEMP = -196.150000 and TNOM = 27.000000
+
+Doing analysis at TEMP = -196.150000 and TNOM = 27.000000
+
+ Reference value :  0.00000e+00/home/oliviag/ngspice-skywater-sims/nfet_mod/l_1p0_w_3p0
+
+No. of Data Rows : 1116
+ BSIM4 models (Berkeley Short Channel IGFET Model-4)
+      model xm1:sky130_fd_pr__nfe
+
+       vth0              0.572584
+         u0              0.293366
+       rdsw               288.238
+    nfactor               7.73808
+       vsat              -3.37936
+       eta0            0.00401684
+      delta                  0.05
+
+List of plots available:
+
+Current dc1	* nmos sweep (sky130)  (DC transfer characteristic)
+	const	Constant values (constants)
+Here are the vectors currently active:
+
+Title: * nmos sweep (sky130) 
+Name: dc1 (DC transfer characteristic)
+Date: Thu Jul 30 17:39:38  2026
+
+    gate                : voltage, real, 1116 long
+    m.xm1.msky130_fd_pr__nfet_01v8_lvt#body: voltage, real, 1116 long
+    m.xm1.msky130_fd_pr__nfet_01v8_lvt#dbody: voltage, real, 1116 long
+    m.xm1.msky130_fd_pr__nfet_01v8_lvt#sbody: voltage, real, 1116 long
+    v-sweep             : voltage, real, 1116 long [default scale]
+    vdd                 : voltage, real, 1116 long
+    vds#branch          : current, real, 1116 long
+    vgs#branch          : current, real, 1116 long
+Reset re-loads circuit * nmos sweep (sky130) 
+
+Circuit: * nmos sweep (sky130) 
+
+Doing analysis at TEMP = -196.150000 and TNOM = 27.000000
+
+
+No. of Data Rows : 1116
+Reset re-loads circuit * nmos sweep (sky130) 
+
+Circuit: * nmos sweep (sky130) 
+
+Doing analysis at TEMP = -196.150000 and TNOM = 27.000000
+
+
+No. of Data Rows : 186
+ngspice-41 done

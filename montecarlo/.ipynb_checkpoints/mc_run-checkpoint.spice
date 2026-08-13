@@ -1,0 +1,16 @@
+* getParam
+
+        .lib "/home/oliviag/skywater130nm/volare/sky130/versions/a918dc7c8e474a99b68c85eb3546b4ed91fe9e7b/sky130A/libs.tech/ngspice/sky130.lib.spice" tt_77k
+        XM1 DRAIN GATE 0 0 sky130_fd_pr__pfet_01v8_lvt l=0.35 w=1.6
+
+
+            .control
+            run
+            set filetype=ascii
+            
+            *showmod m.xm1.msky130_fd_pr__nfet_01v8_lvt : vth0 u0 rdsw nfactor vsat eta0 delta > ogparam.txt
+            show m.xm1.msky130_fd_pr__nfet_01v8_lvt: vth0_nom dvt0_nom dvt1_nom vsat_nom ua_nom ub_nom uc_nom rdsw_nom prwg_nom u0_nom rdw_nom rsw_nom nfactor_nom eta0_nom dsub_nom pclm_nom pvag_nom delta_nom > ogparam.txt
+echo "dvt0_nom = {$dvt0_nom}" >> ogparam.txt
+            
+            .endc
+            .end

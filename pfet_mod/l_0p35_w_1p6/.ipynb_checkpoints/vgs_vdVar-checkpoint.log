@@ -1,0 +1,42 @@
+
+Note: No compatibility mode selected!
+
+
+Circuit: * pmos id–vgs sweep (sky130) 
+
+ BSIM4 models (Berkeley Short Channel IGFET Model-4)
+      model xm1:sky130_fd_pr__pfe
+
+       vth0              -1.13595
+         u0             0.0119114
+       rdsw             0.0053999
+    nfactor               63.0509
+       vsat            1.0275e+09
+       eta0                   0.2
+      delta            -0.0153513
+
+Doing analysis at TEMP = -196.150000 and TNOM = -196.150000
+
+ Reference value :  0.00000e+00
+No. of Data Rows : 186
+Doing analysis at TEMP = -196.150000 and TNOM = -196.150000
+
+
+No. of Data Rows : 186
+Doing analysis at TEMP = -196.150000 and TNOM = -196.150000
+
+
+No. of Data Rows : 186
+Doing analysis at TEMP = -196.150000 and TNOM = -196.150000
+
+
+No. of Data Rows : 186
+Doing analysis at TEMP = -196.150000 and TNOM = -196.150000
+
+
+No. of Data Rows : 186
+Doing analysis at TEMP = -196.150000 and TNOM = -196.150000
+
+
+No. of Data Rows : 186
+Note: Simulation executed from .control section 

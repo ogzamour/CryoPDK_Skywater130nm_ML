@@ -1,0 +1,53 @@
+* NMOS Id–Vgs sweep (Sky130)
+.options compatibility=hspice
+.options kboltz=1.380649e-23 charge=1.60217663e-19
+.options gmin=1e-15 abstol=1e-13 chgtol=1e-16 rtol=0.001
+.options scale=1.0
+.options tnom=-196.15
+.options reltol=1e-5 abstol=1e-14 vntol=1e-7 gmin=1e-15
+.options chgtol=1e-15 method=gear
+.lib "/home/oliviag/skywater130nm/volare/sky130/versions/a918dc7c8e474a99b68c85eb3546b4ed91fe9e7b/sky130A/libs.tech/ngspice/sky130.lib.spice" tt_77k
+
+VGS GATE 0 0
+
+VDS DRAIN 0 1.85
+
+* MOSFET
+XM1 DRAIN GATE 0 0 sky130_fd_pr__nfet_01v8_lvt w=0.64u l=20u 
+
+*nf=1 ad=0.384p as=0.384p pd=2.08u ps=2.08u
+
+* DC sweep
+*.dc VDS 0 1.85 0.01
+
+.control
+  destroy all
+set filetype=ascii
+showmod m.xm1.msky130_fd_pr__nfet_01v8_lvt : vth0 u0 rdsw nfactor vsat eta0 delta
+
+  compose vgs_vals values 0.37 0.74 1.11 1.48 1.85 
+  
+    
+  foreach idx 0 1 2 3 4
+    let current_vgs = vgs_vals[$idx]
+    set vgs_scalar = $&current_vgs
+    alter VGS = $vgs_scalar
+    save @m.xm1.msky130_fd_pr__nfet_01v8_lvt[id] v(DRAIN)
+
+
+    dc VDS 0 1.85 0.01
+
+    let vds_axis = v(DRAIN)
+    let id_axis = @m.xm1.msky130_fd_pr__nfet_01v8_lvt[id]
+    let vgs_axis = current_vgs
+    
+    
+    wrdata /home/oliviag/ngspice-skywater-sims/nfet_mod/l_20p0_w_0p64/vd_sweep/vds_sweep_step{$idx}.txt vgs_axis id_axis vds_axis
+
+
+
+    
+  end 
+.endc 
+
+.end

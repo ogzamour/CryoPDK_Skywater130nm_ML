@@ -1,0 +1,63 @@
+
+Checking parameters for BSIM 4.8 model xm1:sky130_fd_pr__pfet_01v8_lvt__model.1
+Warning: TNOIMOD=1 is not supported and may be removed from future version.
+
+Note: No compatibility mode selected!
+
+
+Circuit: * nmos sweep (sky130) 
+
+Doing analysis at TEMP = -196.150000 and TNOM = 27.000000
+
+ MONTE CARLO RUN: 0
+Doing analysis at TEMP = -196.150000 and TNOM = 27.000000
+
+ Reference value :  0.00000e+00
+No. of Data Rows : 2046
+Doing analysis at TEMP = -196.150000 and TNOM = 27.000000
+
+
+No. of Data Rows : 186
+Doing analysis at TEMP = -196.150000 and TNOM = 27.000000
+
+
+No. of Data Rows : 1116
+Reset re-loads circuit * nmos sweep (sky130) 
+
+Circuit: * nmos sweep (sky130) 
+
+ MONTE CARLO RUN: 1
+Doing analysis at TEMP = -196.150000 and TNOM = 27.000000
+
+
+No. of Data Rows : 2046
+Doing analysis at TEMP = -196.150000 and TNOM = 27.000000
+
+
+No. of Data Rows : 186
+Doing analysis at TEMP = -196.150000 and TNOM = 27.000000
+
+
+No. of Data Rows : 1116
+Reset re-loads circuit * nmos sweep (sky130) 
+
+Circuit: * nmos sweep (sky130) 
+
+ MONTE CARLO RUN: 2
+Doing analysis at TEMP = -196.150000 and TNOM = 27.000000
+
+ Reference value : -1.83000e+00
+No. of Data Rows : 2046
+Doing analysis at TEMP = -196.150000 and TNOM = 27.000000
+
+
+No. of Data Rows : 186
+Doing analysis at TEMP = -196.150000 and TNOM = 27.000000
+
+
+No. of Data Rows : 1116
+Reset re-loads circuit * nmos sweep (sky130) 
+
+Circuit: * nmos sweep (sky130) 
+
+ngspice-41 done
