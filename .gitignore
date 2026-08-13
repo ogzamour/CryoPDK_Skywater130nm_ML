@@ -1,0 +1,6 @@
+ml_method1/
+*.pt
+*.pkl
+*.h5
+*.csv
+montecarlo/mc_output_lhc/nmos_FET_len_0p15_wid_1p6/100000_runs_data_2026-08-10_18-44-48
