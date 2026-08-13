@@ -90,5 +90,6 @@ After both are run, ensure the paths in getRMS.py match your directory (for both
 
 ## Montecarlo
 To run a montecarlo simulation for all parameters on all device, run ```python nomSweep_latinHypercube.py``` in the montecarlo directory. The output will be in ```mc_output_lhc``` and all sweep data will be in 1 CSV files per parameter vg sweep. (Option to save vd sweeps can also be set, and bias voltage can be changed)
+NOTE: Currently, everything is set for a vg sweep only over NMOS model 0 (0.15 x 1.6) at 1.48 bias voltage. This can all be changed in the code for other models, but several files will need to be updated as well as the parameter ranges for the LHC sweep.
 
   
