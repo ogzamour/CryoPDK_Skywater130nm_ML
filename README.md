@@ -75,7 +75,7 @@ These can be run by typing ```ngspice -b <desiredSimFile>.spice``` in the termin
 
 ## RRMS
 
-To get the RRMS calculation for the scripts, first ensure you have the cryo_data file from the paper repo downloaded. Also ensure both the nfet and pfet 77k corners are installed properly and defined in the .lib file.
+To get the RRMS calculation for the scripts, first ensure you have the cryo_data file from the UTA repo downloaded. Also ensure both the nfet and pfet 77k corners are installed properly and defined in the .lib file.
 Then, run ```python runAll.py``` in both the nfet_mod and pfet_mod directories ***Note: will have to change path in the .include***
 
 After both are run, ensure the paths in getRMS.py match your directory (for both the cryo data and modeled pfet/nfet data). Then, run ```python rrmsCalc.py``` in the RRMS directory and the RRMS should print in terminal.
