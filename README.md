@@ -20,7 +20,6 @@ volare ls-remote --pdk sky130
 
 volare enable --pdk sky130 a918dc7c8e474a99b68c85eb3546b4ed91fe9e7b
 ```
-
 ## Downloading_Ngspice
 
 I used jupyter notebooks for this, so that is the setup I will show. However, just make sure version 41 of ngspice is installed and it should work.
@@ -33,13 +32,11 @@ This is the setup I used, and I just made sure sims were run in spice_env:
 ```
 
 ## Enviornment_Setup
-In order to correctly set up the 77k nfet file to work with the rest of volare, you will want to place sky130_fd_pr__nfet_01v8_lvt__tt_77k.corner.spice in the following directory:
+In order to correctly set up the 77k nfet and pfet files to work with the rest of volare, you will want to place the updated PDKs (found in the main directory of the repo) for both device types in the following directory:
 ```
 skywater130nm/volare/sky130/versions/a918dc7c8e474a99b68c85eb3546b4ed91fe9e7b/sky130A/libs.ref/sky130_fd_pr/spice
 ```
-***Use the original, non translated file versions in compressed-cryo-files. Just make sure to change the .lib file as described. The translated file version is not necessary.***
-
-Once the correct nfet file has been placed in the directory, you will want to update the sky130.lib.spice file (/home/<user>/skywater130nm/volare/sky130/versions/a918dc7c8e474a99b68c85eb3546b4ed91fe9e7b/sky130A/libs.tech/ngspice/sky130.lib.spice)
+Once moved, delete the ```updated_``` suffix from both file names. Now, you will want to update the sky130.lib.spice file (/home/<user>/skywater130nm/volare/sky130/versions/a918dc7c8e474a99b68c85eb3546b4ed91fe9e7b/sky130A/libs.tech/ngspice/sky130.lib.spice)
 To do this, insert the following code in sky130.lib.spice under '******* SkyWater sky130 model library *********':
 
 ```
@@ -50,10 +47,10 @@ To do this, insert the following code in sky130.lib.spice under '******* SkyWate
 .param my_gauss = 0
 .param m = 1
 .include "/home/<user>/skywater130nm/volare/sky130/versions/a918dc7c8e474a99b68c85eb3546b4ed91fe9e7b/sky130A/libs.ref/sky130_fd_pr/spice/sky130_fd_pr__nfet_01v8_lvt__tt_77k.corner.spice"
-*.include "/home/<user>/skywater130nm/volare/sky130/versions/a918dc7c8e474a99b68c85eb3546b4ed91fe9e7b/sky130A/libs.ref/sky130_fd_pr/spice/pfet_01v8_lvt/77k_models/sky130_fd_pr__pfet_01v8_lvt__tt_77k.corner.spice"
+.include "/home/<user>/skywater130nm/volare/sky130/versions/a918dc7c8e474a99b68c85eb3546b4ed91fe9e7b/sky130A/libs.ref/sky130_fd_pr/spice/pfet_01v8_lvt/77k_models/sky130_fd_pr__pfet_01v8_lvt__tt_77k.corner.spice"
 
 .include "/home/<user>/skywater130nm/volare/sky130/versions/a918dc7c8e474a99b68c85eb3546b4ed91fe9e7b/sky130A/libs.ref/sky130_fd_pr/spice/sky130_fd_pr__nfet_01v8_lvt__mismatch.corner.spice"
-*.include "/home/<user>/skywater130nm/volare/sky130/versions/a918dc7c8e474a99b68c85eb3546b4ed91fe9e7b/sky130A/libs.ref/sky130_fd_pr/spice/pfet_01v8_lvt/sky130_fd_pr__pfet_01v8_lvt__mismatch.corner.spice"
+.include "/home/<user>/skywater130nm/volare/sky130/versions/a918dc7c8e474a99b68c85eb3546b4ed91fe9e7b/sky130A/libs.ref/sky130_fd_pr/spice/pfet_01v8_lvt/sky130_fd_pr__pfet_01v8_lvt__mismatch.corner.spice"
 
 .include "r+c/res_typical__cap_typical.spice"
 .include "r+c/res_typical__cap_typical__lin.spice"
@@ -64,9 +61,7 @@ To do this, insert the following code in sky130.lib.spice under '******* SkyWate
 
 .endl
 ```
-(To use pfet, delete '*' in front of the include statements)
-
-After this, to use the pdk at 77k, just change the .lib declaration in the ngspice simulation files from tt to tt_77k!
+After this, to use the pdk at 77k, just ensure the .lib declaration in the ngspice simulation files includes tt_77k rather than tt!
 
 ## Running_NGSpice_Sims
 
