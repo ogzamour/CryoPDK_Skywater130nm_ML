@@ -83,8 +83,9 @@ After both are run, ensure the paths in getRMS.py match your directory (for both
 ***could also choose to not rerun pfet/nfet models since the output files are included already in repo***
 
 
-## Montecarlo
-To run a montecarlo simulation for all parameters on all device, run ```python nomSweep_latinHypercube.py``` in the montecarlo directory. The output will be in ```mc_output_lhc``` and all sweep data will be in 1 CSV files per parameter vg sweep. (Option to save vd sweeps can also be set, and bias voltage can be changed)
+## Training Data Generation
+To generate parameter training data for a single device in the PDK, run the notebook ```latinHypercube_DataGen.ipynb``` in the montecarlo directory. The sampling size chan be changed bye editing the ```n``` variable, and the device for the sweep can be edited as well by observing the device library. s
+The output will be in ```mc_output_lhc``` and all sweep data will be in 1 CSV files per parameter vg sweep. (Option to save vd sweeps can also be set, and bias voltage can be changed)
 NOTE: Currently, everything is set for a vg sweep only over NMOS model 0 (0.15 x 1.6) at 1.48 bias voltage. This can all be changed in the code for other models, but several files will need to be updated as well as the parameter ranges for the LHC sweep.
 
   
