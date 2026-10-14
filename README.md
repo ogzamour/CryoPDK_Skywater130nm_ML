@@ -63,9 +63,11 @@ To do this, insert the following code in sky130.lib.spice under '******* SkyWate
 ```
 After this, to use the pdk at 77k, just ensure the .lib declaration in the ngspice simulation files includes tt_77k rather than tt!
 
-## Running_NGSpice_Sims
+## Verifying NgSpice Viability
 
-The ngspice simulation can be run just from the terminal. Inside the pfet/nfet mod folder in the repo, you can use ```runAll.py```
+In order to verify the accuracy of our simulation tool, we recreated ran a VG and VD sweeps for each device at several bias voltages to match the data shown in the reference paper. The ngspice simulations can be found inside the ```pfet_mod``` and ```nfet_mod``` folders. Inside each folder, ```runAll.py``` can be ran to simulate all the necessary data for each transistor type. 
+
+
 For pfet, ensure the updated model file in this repo is inserted into the correct corner directory where the original 77k pfet model card is.
 
 These can be run by typing ```ngspice -b <desiredSimFile>.spice``` in the terminal while in the simulation directory. 
@@ -75,7 +77,7 @@ These can be run by typing ```ngspice -b <desiredSimFile>.spice``` in the termin
 
 ## RRMS
 
-To get the RRMS calculation for the scripts, first ensure you have the cryo_data file from the UTA repo downloaded. Also ensure both the nfet and pfet 77k corners are installed properly and defined in the .lib file.
+To get the RRMS calculation for the baseline model scripts, first ensure you have the cryo_data file from the UTA repo downloaded. Also ensure both the nfet and pfet 77k corners are installed properly and defined in the .lib file.
 Then, run ```python runAll.py``` in both the nfet_mod and pfet_mod directories ***Note: will have to change path in the .include***
 
 After both are run, ensure the paths in getRMS.py match your directory (for both the cryo data and modeled pfet/nfet data). Then, run ```python rrmsCalc.py``` in the RRMS directory and the RRMS should print in terminal.
