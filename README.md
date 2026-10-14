@@ -90,4 +90,7 @@ To generate parameter training data for a single device in the PDK, run the note
 The output will be in ```mc_output_lhc``` and all sweep data will be in 1 CSV files per parameter vg sweep. (Option to save vd sweeps can also be set, and bias voltage can be changed)
 NOTE: Currently, everything is set for a vg sweep only over NMOS model 0 (0.15 x 1.6) at 1.48 bias voltage. This can all be changed in the code for other models, but several files will need to be updated as well as the parameter ranges for the LHC sweep.
 
+## Machine-Learning Model for Stage01 (Low Threshold Voltage Parameters)
+After sufficient training data has been generated for a desired model, an MLP can now be trained to predict parameter extraction. 
+
   
