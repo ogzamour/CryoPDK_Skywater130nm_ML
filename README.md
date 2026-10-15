@@ -32,11 +32,14 @@ This is the setup I used, and I just made sure sims were run in spice_env:
 ```
 
 ## Enviornment_Setup
-In order to correctly set up the 77k nfet and pfet files to work with the rest of volare, you will want to place the updated PDKs (found in the main directory of the repo) for both device types in the following directory:
+In order to correctly set up the 77k nfet and pfet files to work with the rest of volare, you will want to place the updated PDKs as well as the prevMeth PDKs (found in the main directory of the repo) for both device types in the following directory:
 ```
 skywater130nm/volare/sky130/versions/a918dc7c8e474a99b68c85eb3546b4ed91fe9e7b/sky130A/libs.ref/sky130_fd_pr/spice
 ```
-Once moved, delete the ```updated_``` suffix from both file names. Now, you will want to update the sky130.lib.spice file (/home/<user>/skywater130nm/volare/sky130/versions/a918dc7c8e474a99b68c85eb3546b4ed91fe9e7b/sky130A/libs.tech/ngspice/sky130.lib.spice)
+Once moved, if running monte carlo simulation, delete the ```updated_``` suffix from both file names. If running ngSpice comparisons, delete the ```prevMeth_``` suffix from both file names.
+***ensure only one of these PDK types (either updated or prevMeth) has its suffix removed at a time ***
+
+Now, you will want to update the sky130.lib.spice file (/home/<user>/skywater130nm/volare/sky130/versions/a918dc7c8e474a99b68c85eb3546b4ed91fe9e7b/sky130A/libs.tech/ngspice/sky130.lib.spice)
 To do this, insert the following code in sky130.lib.spice under '******* SkyWater sky130 model library *********':
 
 ```
