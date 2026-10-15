@@ -67,15 +67,17 @@ To do this, insert the following code in sky130.lib.spice under '******* SkyWate
 After this, to use the pdk at 77k, just ensure the .lib declaration in the ngspice simulation files includes tt_77k rather than tt!
 
 ## Verifying NgSpice Viability
+***ensure paths in each file match the paths in your directory***
 
-In order to verify the accuracy of our simulation tool, we recreated ran a VG and VD sweeps for each device at several bias voltages to match the data shown in the reference paper. The ngspice simulations can be found inside the ```pfet_mod``` and ```nfet_mod``` folders. Inside each folder, ```runAll.py``` can be ran to simulate all the necessary data for each transistor type. 
+In order to verify the accuracy of our simulation tool, we recreated ran a VG and VD sweeps for each device at several bias voltages to match the data shown in the reference paper. Ensure the ```prevMeth``` PDKs are being used (see Enviormnent_Setup).
+The ngspice simulations can be found inside the ```pfet_mod``` and ```nfet_mod``` folders. Inside each folder, ```runAll.py``` can be ran to simulate all the necessary data for each transistor type. 
 
 
-For pfet, ensure the updated model file in this repo is inserted into the correct corner directory where the original 77k pfet model card is.
 
-These can be run by typing ```ngspice -b <desiredSimFile>.spice``` in the terminal while in the simulation directory. 
 
-(note: if you set ngspice in a specific enviornment like spice_env, make sure it is active while trying to run the simulation)
+Single device simulations can be run by typing ```ngspice -b <desiredSimFile>.spice``` in the terminal while in the simulation directory. 
+
+***(if you set ngspice in a specific enviornment like spice_env, make sure it is active while trying to run the simulation)***
 
 
 ## RRMS
