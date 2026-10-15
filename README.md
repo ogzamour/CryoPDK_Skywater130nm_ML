@@ -92,9 +92,19 @@ After both are run, ensure the paths in getRMS.py match your directory (for both
 ## Training Data Generation
 To generate parameter training data for a single device in the PDK, run the notebook ```latinHypercube_DataGen.ipynb``` in the montecarlo directory. The sampling size chan be changed bye editing the ```n``` variable, and the device for the sweep can be edited as well by observing the device library. s
 The output will be in ```mc_output_lhc``` and all sweep data will be in 1 CSV files per parameter vg sweep. (Option to save vd sweeps can also be set, and bias voltage can be changed)
-NOTE: Currently, everything is set for a vg sweep only over NMOS model 0 (0.15 x 1.6) at 1.48 bias voltage. This can all be changed in the code for other models, but several files will need to be updated as well as the parameter ranges for the LHC sweep.
+***Currently, everything is set for a vg sweep only over NMOS model 0 (0.15 x 1.6) at 1.48 bias voltage. This can all be changed in the code for other models, but several files will need to be updated as well as the parameter ranges for the LHC sweep.***
 
 ## Machine-Learning Model for Stage01 (Low Threshold Voltage Parameters)
 After sufficient training data has been generated for a desired model, an MLP can now be trained to predict parameter extraction. 
+All scripts for the model training can be found in the folder ```ml_method1```. Again, first ensure your input and output libraries in each script reflect your directory. 
+
+First, run the ```ml_00_data_analysis.ipynb``` notebook. This will format the training data in a way the network can use. Make sure the number of simulations ```n``` reflects the amount of training data you generated. 
+
+After the data has been reformatted, the surrogate model can be made by first running the ```surrogate_train.ipynb``` and then running ```surrogate_predict.ipynb``` to view the results. 
+Once the surrogate has been created, the main model can be made by running ```ml_01_train_keras.ipynb```, which has several variables you can mess with (these can also be found in the ```parameters.py``` file). Finally, you can view the models prediction by running ```ml_02_predict_using_measurements.ipynb```, and once the new parameters have been sent to an ngSpice file, run ```ngspice -b testParam.spice``` in the terminal and continue running the notebook to view the comparison plots.
+
+***There are two different network library options in each notebook, pyTorch and Keras***
+
+***currently the ml is configured for a single device at a single bias vd. This can be altered if you wish. There are also some supplementary scripts throughout the directory that are not at integral to the workflow, but you may find them useful.***
 
   
